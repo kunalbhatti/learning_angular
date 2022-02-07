@@ -1,6 +1,11 @@
 .label-br {
   display: block;
 }
+
+.div-br{
+  margin-bottom: 10px;
+}
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;

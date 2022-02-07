@@ -4,29 +4,37 @@
   <div style="width: 30%;">
     <h2>User Form</h2>
     <form [formGroup]="userForm" (ngSubmit)="updateId === -1 ? onSubmit() : onUpdate()">
-      <p>
+      <div class="div-br">
         <label for="name" class="label-br">Name</label>
         <input id="name" type="text" formControlName="name" placeholder="Name">
-      </p>
-      <div style="font-size: 0.8rem; color: red"
-        *ngIf="userForm.controls['name'].touched && userForm.controls['name'].invalid">*Filed Required</div>
-      <p>
+        <div style="font-size: 0.8rem; color: red"
+          *ngIf="userForm.controls['name'].touched && userForm.controls['name'].invalid">*Filed Required</div>
+      </div>
+      <div class="div-br">
         <label for="email" class="label-br">Email: </label>
         <input id="email" formControlName="email" placeholder="Email">
-      </p>
-      <p>
+        <div style="font-size: 0.8rem; color: red"
+          *ngIf="userForm.controls['email'].touched && userForm.controls['email'].invalid">*Filed Required</div>
+      </div>
+      <div class="div-br">
         <label for="country" class="label-br">Country</label>
         <input id="country" type="text" formControlName="country" placeholder="Country">
-      </p>
-      <p>
-        <label for="statue" class="label-br">State</label>
+        <div style="font-size: 0.8rem; color: red"
+          *ngIf="userForm.controls['country'].touched && userForm.controls['country'].invalid">*Filed Required</div>
+      </div>
+      <div class="div-br">
+        <label for="state" class="label-br">State</label>
         <input type="text" formControlName="state" placeholder="State">
-      </p>
-      <p>
+        <div style="font-size: 0.8rem; color: red"
+          *ngIf="userForm.controls['state'].touched && userForm.controls['state'].invalid">*Filed Required</div>
+      </div>
+      <div class="div-br">
         <label for="city" class="label-br">City</label>
         <input id="city" type="text" formControlName="city" placeholder="City">
-      </p>
-      <div formArrayName="favFood">
+        <div style="font-size: 0.8rem; color: red"
+        *ngIf="userForm.controls['city'].touched && userForm.controls['city'].invalid">*Filed Required</div>
+      </div>
+      <div formArrayName="favFood" class="div-br">
         <label for="favFood" class="label-br">Favourite Food</label>
         <span formGroupName="0">
           <input type="checkbox" formControlName="pizza" value="pizza">
@@ -40,15 +48,14 @@
           <input type="checkbox" formControlName="noodles" value="noodles">
           <label for="">Noodles</label>
         </span>
-        
       </div>
-      <p>
+      <div class="div-br">
         <label class="label-br">Gender</label>
         <label for="male">Male</label>
         <input id="male" type="radio" formControlName="gender" value="male" selected>
         <label for="female">Female</label>
         <input id="female" type="radio" formControlName="gender" value="female">
-      </p>
+      </div>
 
       <p>
         <label for="maritalStatus" class="label-br">Marital Status</label>
