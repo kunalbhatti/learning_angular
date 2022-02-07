@@ -88,14 +88,14 @@
       </tr>
 
       <tr *ngFor="let user of users; let i = index;">
-        <td>{{user.name}}</td>
+        <td>{{user.name | titlecase}}</td>
         <td>{{user.email}}</td>
-        <td>{{user.country}}</td>
-        <td>{{user.state}}</td>
-        <td>{{user.city}}</td>
+        <td>{{user.country | titlecase}}</td>
+        <td>{{user.state | titlecase}}</td>
+        <td>{{user.city | titlecase}}</td>
         <td>{{user.favFood}}</td>
-        <td>{{user.gender}}</td>
-        <td>{{user.maritalStatus}}</td>
+        <td>{{user.gender | titlecase}}</td>
+        <td>{{user.maritalStatus | titlecase}}</td>
         <td>
           <button (click)="onEdit(i)">Edit</button>
           <button style="margin-left: 3px;" (click)="onDelete(i)">Delete</button>

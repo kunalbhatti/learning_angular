@@ -1,3 +1,4 @@
+import { TitleCasePipe } from '@angular/common';
 import {
   Component
 } from '@angular/core';
@@ -7,6 +8,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+
 import {
   User
 } from './user.model';
@@ -52,7 +54,7 @@ export class AppComponent {
 
     for(let i in  newUser.favFood){
       if(newUser.favFood[i][this.foodTypes[i]]){        
-        favFoodArr.push(this.foodTypes[i]);
+        favFoodArr.push(new TitleCasePipe().transform(this.foodTypes[i]));
       }
     }
 
@@ -60,7 +62,7 @@ export class AppComponent {
 
     this.users.push(newUser);
     this.userForm.reset();
-    this.userForm.get('maritalStatus')?.setValue('default');
+    this.userForm.get('maritalStatus')?.setValue('single');
   }
 
   onEdit(id: number): void{
@@ -107,6 +109,7 @@ export class AppComponent {
 
     this.users[this.updateId] = userUpdate;
     this.userForm.reset();
+    this.userForm.get('maritalStatus')?.setValue('single');
 
     this.updateId = -1;
   }
