@@ -1,18 +1,29 @@
 <div>
   <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
-    <input type="text" formControlName="name">
+    <input placeholder="Name" type="text" formControlName="name">
+    <div *ngIf="!name && submitted" style="font-size: 0.8rem; color: red">*name required</div>
     <br>
-    <input type="number" formControlName="age">
+    <input placeholder="Age" type="number" formControlName="age">
+    <div  *ngIf="!age && submitted"  style="font-size: 0.8rem; color: red">*age required</div>
     <br>
     <input type="submit">
+    <br>
+    <label for="male">Male</label>
+    <input id="male" type="radio" formControlName="gender" value="Male">
+    <label for="female">Female</label>
+    <input id="female" type="radio" formControlName="gender" value="Female">
+    <div *ngIf="!gender && submitted" style="font-size: 0.8rem; color: red">*age required</div>
   </form>
 </div>
 
 <div>
   <p>
-    Name: {{name}}
+    Name: {{name | titlecase}}
   </p>
   <p>
     Age: {{age}}
+  </p>
+  <p>
+    Gender: {{gender}}
   </p>
 </div>
