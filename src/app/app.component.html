@@ -1,29 +1,101 @@
-<div>
-  <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
-    <input placeholder="Name" type="text" formControlName="name">
-    <div *ngIf="!name && submitted" style="font-size: 0.8rem; color: red">*name required</div>
-    <br>
-    <input placeholder="Age" type="number" formControlName="age">
-    <div  *ngIf="!age && submitted"  style="font-size: 0.8rem; color: red">*age required</div>
-    <br>
-    <input type="submit">
-    <br>
-    <label for="male">Male</label>
-    <input id="male" type="radio" formControlName="gender" value="Male">
-    <label for="female">Female</label>
-    <input id="female" type="radio" formControlName="gender" value="Female">
-    <div *ngIf="!gender && submitted" style="font-size: 0.8rem; color: red">*age required</div>
-  </form>
-</div>
+<div style="display: flex;">
 
-<div>
-  <p>
-    Name: {{name | titlecase}}
-  </p>
-  <p>
-    Age: {{age}}
-  </p>
-  <p>
-    Gender: {{gender}}
-  </p>
+
+  <div style="width: 30%;">
+    <h2>User Form</h2>
+    <form [formGroup]="userForm" (ngSubmit)="updateId === -1 ? onSubmit() : onUpdate()">
+      <p>
+        <label for="name" class="label-br">Name</label>
+        <input id="name" type="text" formControlName="name" placeholder="Name">
+      </p>
+      <div style="font-size: 0.8rem; color: red"
+        *ngIf="userForm.controls['name'].touched && userForm.controls['name'].invalid">*Filed Required</div>
+      <p>
+        <label for="email" class="label-br">Email: </label>
+        <input id="email" formControlName="email" placeholder="Email">
+      </p>
+      <p>
+        <label for="country" class="label-br">Country</label>
+        <input id="country" type="text" formControlName="country" placeholder="Country">
+      </p>
+      <p>
+        <label for="statue" class="label-br">State</label>
+        <input type="text" formControlName="state" placeholder="State">
+      </p>
+      <p>
+        <label for="city" class="label-br">City</label>
+        <input id="city" type="text" formControlName="city" placeholder="City">
+      </p>
+      <div formArrayName="favFood">
+        <label for="favFood" class="label-br">Favourite Food</label>
+        <span formGroupName="0">
+          <input type="checkbox" formControlName="pizza" value="pizza">
+          <label for="">Pizza</label>
+        </span>
+        <span formGroupName="1">
+          <input type="checkbox" formControlName="burger" value="burger">
+          <label for="">Burger</label>
+        </span>
+        <span formGroupName="2">
+          <input type="checkbox" formControlName="noodles" value="noodles">
+          <label for="">Noodles</label>
+        </span>
+        
+      </div>
+      <p>
+        <label class="label-br">Gender</label>
+        <label for="male">Male</label>
+        <input id="male" type="radio" formControlName="gender" value="male" selected>
+        <label for="female">Female</label>
+        <input id="female" type="radio" formControlName="gender" value="female">
+      </p>
+
+      <p>
+        <label for="maritalStatus" class="label-br">Marital Status</label>
+        <select formControlName="maritalStatus">
+          <option disabled value="default">Marital Status</option>
+          <option value="single">Single</option>
+          <option value="married">Married</option>
+        </select>
+      </p>
+
+      <div>
+        <input type="submit" value="Add User" *ngIf="updateId == -1" [disabled]="userForm.invalid">
+        <input type="submit" value="Update User" *ngIf="updateId != -1">
+      </div>
+    </form>
+  </div>
+  <div style="width: 75%; border-left: 1px solid gray; padding: 5px;">
+    <h2>Users Table</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Country</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Fav Food</th>
+        <th>Gender</th>
+        <th>Marital Status</th>
+        <th>Edit</th>
+      </tr>
+
+      <tr *ngFor="let user of users; let i = index;">
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.country}}</td>
+        <td>{{user.state}}</td>
+        <td>{{user.city}}</td>
+        <td>{{user.favFood}}</td>
+        <td>{{user.gender}}</td>
+        <td>{{user.maritalStatus}}</td>
+        <td>
+          <button (click)="onEdit(i)">Edit</button>
+          <button style="margin-left: 3px;" (click)="onDelete(i)">Delete</button>
+        </td>
+      </tr>
+
+
+    </table>
+  </div>
 </div>
