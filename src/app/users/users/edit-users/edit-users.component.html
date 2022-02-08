@@ -1,0 +1,73 @@
+<form [formGroup]="userForm" (ngSubmit)="onUpdate()">
+
+  <div class="container-fluid mt-3 h-50">
+    <div class="row d-flex justify-content-center align-items-center h-50">
+      <div class="col-12">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Name" formControlName="name">
+          <div style="font-size: 0.8rem; color: red;"
+            *ngIf="userForm.controls['name'].touched && userForm.controls['name'].invalid">*Filed Required</div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Email" formControlName="email">
+        </div>
+        <div class="input-group mb-3">
+          <input type="country" class="form-control" placeholder="Country" formControlName="country">
+        </div>
+        <div class="input-group mb-3">
+          <input type="state" class="form-control" placeholder="State" formControlName="state">
+        </div>
+        <div class="input-group mb-3">
+          <input type="city" class="form-control" placeholder="City" formControlName="city">
+        </div>
+
+        <div class="mt-2 mb-2">
+          <label class="form-label">Favourite Food</label>
+          <div formArrayName="favFood" class="form-check">
+            <div formGroupName="0">
+              <input class="form-check-input" type="checkbox" formControlName="pizza" value="pizza">
+              <label for="" class="form-check-label">Pizza</label>
+            </div>
+            <div formGroupName="1">
+              <input class="form-check-input" type="checkbox" formControlName="burger" value="burger">
+              <label for="" class="form-check-label">Burger</label>
+            </div>
+            <div formGroupName="2">
+              <input class="form-check-input" type="checkbox" formControlName="noodles" value="noodles">
+              <label for="" class="form-check-label">Noodles</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2 mb-2">
+          <label class="label-br">Gender</label>
+          <div class="form-check">
+            <label for="male" class="form-check-label">Male</label>
+            <input id="male" class="form-check-input" type="radio" formControlName="gender" value="male" selected>
+          </div>
+          <div class="form-check">
+            <label for="female" class="form-check-label">Female</label>
+            <input id="female" class="form-check-input" type="radio" formControlName="gender" value="female">
+          </div>
+        </div>
+
+        <div class="mt-2 mb-2">
+          <label for="maritalStatus" class="label-br">Marital Status</label>
+          <select formControlName="maritalStatus" class="form-select">
+            <option disabled value="default">Marital Status</option>
+            <option value="single">Single</option>
+            <option value="married">Married</option>
+          </select>
+        </div>
+
+        <hr>
+
+        <div class="d-flex justify-content-center">
+          <input class="btn btn-primary" type="submit" value="Update User">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>

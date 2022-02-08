@@ -1,0 +1,15 @@
+<div class="row h-100">
+  <div class="col-2 border-end">
+    <div class="row">
+      <div class="col-12 bg-secondary text-light pt-2 pb-2 d-flex justify-content-center">Menu</div>
+    </div>
+    <ul class="list-group row list-group-flush">
+      <a class="list-group-item pointer" [routerLink]="['/', 'users', 'view']" routerLinkActive="active">View Users</a>
+      <a class="list-group-item" [routerLink]="['/', 'users', 'add']" routerLinkActive="active">Add Users</a>
+    </ul>
+  </div>
+
+  <div class="col-10">
+    <router-outlet></router-outlet>
+  </div>
+</div>
