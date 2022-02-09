@@ -1,8 +1,17 @@
 import {
+  AfterViewInit,
   Component,
+  Input,
   OnDestroy,
-  OnInit
+  OnInit,
+  ViewChild
 } from "@angular/core";
+import {
+  AgGridAngular
+} from "ag-grid-angular";
+import {
+  ColDef
+} from "ag-grid-community";
 import {
   Subscription
 } from "rxjs";
@@ -23,9 +32,45 @@ export class ViewUsersComponent implements OnInit, OnDestroy {
 
   users: User[] = [];
 
-  selectedUser: number = -1;
+  @Input() selectedUser: number = -1;
 
   usersSub!: Subscription;
+
+  @ViewChild('agGrid') agGrid!: AgGridAngular;
+
+  colDef: ColDef[] = [{
+    headerName: 'Name',
+    field: 'name',
+    sortable: true,
+    checkboxSelection: true
+  }, {
+    headerName: 'Email',
+    field: 'email'
+  }, {
+    headerName: 'Country',
+    field: 'country',
+    sortable: true,
+    filter: true
+  }, {
+    headerName: 'State',
+    field: 'state',
+    sortable: true,
+    filter: true
+  }, {
+    headerName: 'City',
+    field: 'city',
+    sortable: true,
+    filter: true
+  }, {
+    headerName: 'Favourite Food',
+    field: 'favFood',
+  }, {
+    headerName: 'Gender',
+    field: 'gender'
+  }, {
+    headerName: 'Marital Status',
+    field: 'maritalStatus'
+  }];
 
   constructor(private usersService: UsersService) {}
 
@@ -45,6 +90,15 @@ export class ViewUsersComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.usersSub.unsubscribe();
+  }
+
+  setSelectedUser(): void {
+
+    const selectedNode = this.agGrid.api.getSelectedNodes();
+    const data: User[] = selectedNode.map(node => node.data);
+    
+    this.selectedUser = this.users.findIndex(user => user.name === data[0].name)
+    
   }
 
 }

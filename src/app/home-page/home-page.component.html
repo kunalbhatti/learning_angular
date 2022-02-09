@@ -1,5 +1,20 @@
 <div class="row h-50 d-flex justify-content-center align-items-center">
-    <div class="col-4 text-center" style="font-size: larger;">
+    <!-- <div class="col-4 text-center" style="font-size: larger;">
         Welcome to Angular Learning
+    </div> -->
+
+    <button (click) = "getSelectedRows()">Get Data</button>
+    <div class="col-6">
+        <ag-grid-angular
+        #agGrid
+        style="width: 500px; height: 500px"
+        class="ag-theme-balham"
+        [autoGroupColumnDef]="autoGroupColumnDef"
+        [groupSelectsChildren]="true"
+        [rowData]="rowData"
+        [columnDefs]="colDef"
+        rowSelection="multiple"
+        ></ag-grid-angular>
     </div>
 </div>
+
